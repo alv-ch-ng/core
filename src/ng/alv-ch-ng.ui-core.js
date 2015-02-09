@@ -128,20 +128,15 @@
         return {
             priority: 10,
             restrict: 'E',
+            template: '<span class="glyphicon" ng-transclude></span>',
+            transclude: true,
             replace: true,
             link: function(scope, element, attrs){
-                var icon = angular.element('<span class="glyphicon"></span>');
-                if (!attrs.icon){
-                    icon.addClass('glyphicon-warning-sign');
+                if (attrs.icon===undefined){
+                    element.addClass('glyphicon-warning-sign');
                 }
                 else {
-                    icon.addClass('glyphicon-'+attrs.icon);
-                }
-                if (attrs.align==='right'){
-                    element.append(icon);
-                }
-                else {
-                    element.prepend(icon);
+                    element.addClass('glyphicon-'+attrs.icon);
                 }
             }
         };
