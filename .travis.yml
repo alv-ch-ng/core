@@ -4,8 +4,3 @@ node_js:
 install: npm install
 before_install: npm install -g grunt-cli
 before_script: bower install
-addons:
-  code_climate:
-    repo_token: cd0f4623454f8c93e6aa6b07251977f6b057a181431a75d1ab436874bd31d4c2
-after_script:
-  - cat lcov.info | codeclimate
