@@ -1,0 +1,6 @@
+<ol class="breadcrumb" ng-controller="NavigationCtrl">
+    <li ng-repeat="breadcrumb in getBreadCrumbs() " ng-class="{active: isCurrentItem(breadcrumb) }">
+        <a ng-click="navigateTo(breadcrumb)" ng-hide="isCurrentItem(breadcrumb)" class="pointer">{{breadcrumb.text}}</a>
+        <span ng-show="isCurrentItem(breadcrumb)">{{breadcrumb.text}}</span>
+    </li>
+</ol>

@@ -1,0 +1,13 @@
+{
+  "common_i18n_select_selectedTextFormat": "ausgew&auml;hlt",
+  "common_i18n_select_noneSelectedText": "Bitte w&auml;hlen",
+  "common_i18n_select_noneResultsText": "Keine Ergebnisse f&uuml;r",
+  "common_i18n_select_countSelectedText": "{0} von {1} ausgew&auml;hlt",
+  "common_i18n_select_maxOptionsText1": "Limit erreicht ({n} {var} max.)",
+  "common_i18n_select_maxOptionsText2": "Gruppen_Limit erreicht ({n} {var} max.)",
+  "common_i18n_select_maxOptionsText3": "Eintrag",
+  "common_i18n_select_maxOptionsText4": "Eintr&auml;ge",
+  "common_i18n_mailcheck_didYouMean": "Meinten sie:",
+  "common_i18n_scrollToTop": "&uarr; Nach oben",
+  "common_i18n_contents": "Inhalt"
+}

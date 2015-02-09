@@ -1,0 +1,7 @@
+<form not-auth>
+    <input form-input form-label="loginUser" type="email" id="loginUser" ng-model="loginUser" />
+    <input form-input form-label="loginPwd" type="password" id="loginPwd" ng-model="loginPwd" />
+    <input form-input form-label="loginAuthToken" form-prepend="Authy" type="number" id="authToken" ng-model="authToken" ng-show="authTokenShow" />
+    <button class="btn-primary" ng-click="login()" ng-show="!authTokenShow">Login</button>
+    <button class="btn-primary" ng-click="authenticate()" glyph-icon="eye-open" ng-show="authTokenShow">Authenticate</button>
+</form>
