@@ -2,7 +2,7 @@
 describe('formSelect directive with i18n', function () {
     var elem, scope;
 
-    beforeEach(module('alv-ch-ng.ui-forms','alv-ch-ng.translate', function ($translateProvider) {
+    beforeEach(module('alv-ch-ng.ui-forms', function ($translateProvider) {
         $translateProvider.translations('en', {
             common_i18n_select_selectedTextFormat:'EN_selectedTextFormat',
             common_i18n_select_noneSelectedText:'EN_noneSelectedText',

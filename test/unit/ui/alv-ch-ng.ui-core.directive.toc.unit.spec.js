@@ -2,7 +2,7 @@
 describe('table of content (toc) spy directive', function () {
     var elem, scope;
 
-    beforeEach(module('alv-ch-ng.ui-core','alv-ch-ng.translate', function ($translateProvider) {
+    beforeEach(module('alv-ch-ng.ui-core', function ($translateProvider) {
         $translateProvider.translations('en', {
             common_i18n_contents:'Contents',
             testTitle:'EN Title'

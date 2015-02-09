@@ -40,11 +40,6 @@
                     src:      ['template/typeahead/**.html', 'template/tooltip/**.html'],
                     dest:     'src/ng/alv-ch-ng.ui-forms.templates.js'
                 },
-                'alv-ch-ng.translate':        {
-                    cwd:      'src/ng/',
-                    src:      ['template/i18n/**.html'],
-                    dest:     'src/ng/alv-ch-ng.translate.templates.js'
-                },
                 'alv-ch-ng.ui-core':        {
                     cwd:      'src/ng/',
                     src:      ['template/core/**.html'],
@@ -67,10 +62,6 @@
                 forms: {
                     src: ['src/ng/alv-ch-ng.ui-forms.js', 'src/ng/alv-ch-ng.ui-forms.templates.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.de.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr-CH.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.it-CH.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.en-GB.js'],
                     dest: 'dist/alv-ch-ng.ui-forms.js'
-                },
-                translate: {
-                    src: ['src/ng/alv-ch-ng.translate.js', 'src/ng/alv-ch-ng.translate.templates.js'],
-                    dest: 'dist/alv-ch-ng.translate.js'
                 },
                 core: {
                     src: ['src/ng/alv-ch-ng.ui-core.js', 'src/ng/alv-ch-ng.ui-core.templates.js'],
@@ -158,7 +149,6 @@
                 },
                 prod: {
                     files: {
-                        'dist/alv-ch-ng.translate.min.js': ['dist/alv-ch-ng.translate.js'],
                         'dist/alv-ch-ng.security.min.js': ['dist/alv-ch-ng.security.js'],
                         'dist/alv-ch-ng.ui-core.min.js': ['dist/alv-ch-ng.ui-core.js'],
                         'dist/alv-ch-ng.ui-navigation.min.js': ['dist/alv-ch-ng.ui-navigation.js'],
@@ -195,8 +185,6 @@
                             'lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
                             'lib/ng-dev/dist/ng-dev.js',
                             'lib/highlightjs/highlight.pack.js',
-                            'src/ng/alv-ch-ng.translate.js',
-                            'src/ng/alv-ch-ng.translate.templates.js',
                             'src/ng/alv-ch-ng.security.js',
                             'src/ng/alv-ch-ng.security.templates.js',
                             'src/ng/alv-ch-ng.ui-core.js',
@@ -281,7 +269,6 @@
                     },
                     files: [
                         { src: ['dist/alv-ch-ng.common.min.js'], dest: 'dist/alv-ch-ng.common.min.js' },
-                        { src: ['dist/alv-ch-ng.translate.min.js'], dest: 'dist/alv-ch-ng.translate.min.js' },
                         { src: ['dist/alv-ch-ng.security.min.js'], dest: 'dist/alv-ch-ng.security.min.js' },
                         { src: ['dist/alv-ch-ng.ui-core.min.js'], dest: 'dist/alv-ch-ng.ui-core.min.js' },
                         { src: ['dist/alv-ch-ng.ui-scroll.min.js'], dest: 'dist/alv-ch-ng.ui-scroll.min.js' },
@@ -419,12 +406,11 @@
                 jshint: {
                     files: 'src/**/*.js',
                     tasks: ['jshint-test','uglify:demo']
+                },
+                jasmine: {
+                    files: 'src/ng/**/*.js',
+                    tasks: ['unit-test']
                 }
-                //,
-                //jasmine: {
-                //    files: 'src/ng/**/*.js',
-                //    tasks: ['unit-test']
-                //}
             },
             browserSync: {
                 dev: {

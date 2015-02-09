@@ -2,7 +2,7 @@
 describe('formMailcheck directive', function () {
     var elem, scope;
 
-    beforeEach(module('alv-ch-ng.ui-forms','alv-ch-ng.translate', function ($translateProvider) {
+    beforeEach(module('alv-ch-ng.ui-forms', function ($translateProvider) {
         $translateProvider.translations('en', {
             common_i18n_mailcheck_didYouMean:'EN_didYouMean',
             testMailcheck:'EN_testMailcheck'

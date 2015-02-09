@@ -2,13 +2,13 @@
     describe('scrollSpy and spy directive', function () {
         var elem, scope;
 
-        beforeEach(module('alv-ch-ng.ui-scroll','alv-ch-ng.translate', function ($translateProvider) {
+        beforeEach(module('alv-ch-ng.ui-scroll', function ($translateProvider) {
             $translateProvider.translations('en', {
                 common_i18n_contents:'Contents'
             })
-                .translations('de', {
-                    common_i18n_contents:'Inhalt'
-                });
+            .translations('de', {
+                common_i18n_contents:'Inhalt'
+            });
             $translateProvider.preferredLanguage('en');
         }));
 

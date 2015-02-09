@@ -2,35 +2,7 @@
 
     'use strict';
 
-    var module = angular.module('alv-ch-ng.ui-core', []);
-
-    module.directive('message', function(){
-            return {
-                priority: 10,
-                restrict: 'E',
-                template: '<div class="alert" ng-transclude></div>',
-                transclude: true,
-                replace: true,
-                link: function(scope, element, attrs){
-                    var severity = "info";
-                    if (attrs.messageSeverity!==undefined){
-                        severity = attrs.messageSeverity;
-                    }
-                    // add severity
-                    element.addClass("alert-"+severity);
-                    // add dismissbale
-
-                    if (attrs.messageDismissable==='true'){
-                        element.addClass("alert-dismissable");
-                        if (!attrs.messageDismissableText){
-                            element.prepend(angular.element('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'));
-                        } else {
-                            element.prepend(angular.element('<button type="button" class="close text-close" data-dismiss="alert" aria-hidden="true">'+attrs.messageDismissableText+'</button>'));
-                        }
-                    }
-                }
-            };
-        });
+    var module = angular.module('alv-ch-ng.ui-core', ['pascalprecht.translate']);
 
     module.directive('alert', function(){
         return {
@@ -153,22 +125,27 @@
         });
 
     module.directive('glyph', function(){
-            return {
-                priority: 10,
-                restrict: 'E',
-                template: '<span class="glyphicon" ng-transclude></span>',
-                transclude: true,
-                replace: true,
-                link: function(scope, element, attrs){
-                    if (attrs.icon===undefined){
-                        element.addClass('glyphicon-warning-sign');
-                    }
-                    else {
-                        element.addClass('glyphicon-'+attrs.icon);
-                    }
+        return {
+            priority: 10,
+            restrict: 'E',
+            replace: true,
+            link: function(scope, element, attrs){
+                var icon = angular.element('<span class="glyphicon"></span>');
+                if (!attrs.icon){
+                    icon.addClass('glyphicon-warning-sign');
                 }
-            };
-        });
+                else {
+                    icon.addClass('glyphicon-'+attrs.icon);
+                }
+                if (attrs.align==='right'){
+                    element.append(icon);
+                }
+                else {
+                    element.prepend(icon);
+                }
+            }
+        };
+    });
 
     module.directive('glyphIcon', function(){
             return {
@@ -176,12 +153,30 @@
                 restrict: 'A',
                 replace: true,
                 link: function(scope, element, attrs){
-                    var icon = angular.element('<span class="glyphicon"></span>');
-                    if (!attrs.glyphIcon){
-                        icon.addClass('glyphicon-warning-sign');
+                    var icon = angular.element('<span></span>');
+                    if (attrs.adminSymbol===undefined){
+                        icon.addClass('glyphicon');
                     }
                     else {
-                        icon.addClass('glyphicon-'+attrs.glyphIcon);
+                        icon.addClass('icon');
+                        icon.attr('aria-hidden','true');
+                    }
+
+                    if (!attrs.glyphIcon){
+                        if (attrs.adminSymbol===undefined) {
+                            icon.addClass('glyphicon-warning-sign');
+                        }
+                        else {
+                            icon.addClass('icon--exclam');
+                        }
+                    }
+                    else {
+                        if (attrs.adminSymbol===undefined) {
+                            icon.addClass('glyphicon-' + attrs.glyphIcon);
+                        }
+                        else {
+                            icon.addClass('icon--'+attrs.glyphIcon);
+                        }
                     }
                     if (attrs.glyphAlign==='right'){
                         element.append(icon);
@@ -192,29 +187,6 @@
                 }
             };
         });
-
-    module.directive('adminSymbol', function(){
-        return {
-            priority: 10,
-            restrict: 'A',
-            replace: true,
-            link: function(scope, element, attrs){
-                var icon = angular.element('<span class="icon" aria-hidden="true"></span>');
-                if (!attrs.adminSymbol){
-                    icon.addClass('icon--exclam');
-                }
-                else {
-                    icon.addClass('icon--'+attrs.adminSymbol);
-                }
-                if (attrs.glyphAlign==='right'){
-                    element.append(icon);
-                }
-                else {
-                    element.prepend(icon);
-                }
-            }
-        };
-    });
 
     module.directive('collapsible', function(){
             return {
@@ -414,6 +386,39 @@
                     $location.hash(anchor);
 
                     scope.$broadcast('alv-ch-ng:dom-manipulate', {'id': element.attr('id'), 'event':'toc:scrollToc'});
+                };
+            }
+        };
+    }]);
+
+    module.directive('languageSwitcher', ['$translate', 'supportedLanguages', function ($translate,supportedLanguages) {
+        return {
+            restrict: 'E',
+            templateUrl: 'template/core/language-switcher.html',
+            replace: true,
+            link: function (scope, element, attrs) {
+                scope.styleClass = element.attr('class');
+                scope.style = element.attr('style');
+
+                // put supported languages into allLanguages array
+                scope.allLanguages = [];
+
+                if (attrs.languages) {
+                    var tokens = attrs.languages.split(',');
+                    for (var i = 0; i < tokens.length; i++) {
+                        scope.allLanguages[i] = tokens[i].trim();
+                    }
+                } else {
+                    scope.allLanguages = supportedLanguages;
+                }
+
+
+                scope.getTranslationLanguage = function () {
+                    return $translate.use();
+                };
+
+                scope.setTranslationLanguage = function (language) {
+                    $translate.use(language);
                 };
             }
         };

@@ -1,7 +1,7 @@
 ;(function(){
 
     'use strict';
-    var module = angular.module('alv-ch-ng.ui-scroll', ['alv-ch-ng.ui-core','alv-ch-ng.translate']);
+    var module = angular.module('alv-ch-ng.ui-scroll', ['alv-ch-ng.ui-core']);
 
     module.service('ScrollService', ['$window', function ScrollService($window) {
         var ctrl=this;
