@@ -1,7 +1,7 @@
 ;(function(){
 
     'use strict';
-    var module = angular.module('alv-ch-ng.ui-scroll', ['alv-ch-ng.ui-core','alv-ch-ng.translate']);
+    var module = angular.module('alv-ch-ng.ui-scroll', ['alv-ch-ng.ui-core']);
 
     module.service('ScrollService', ['$window', function ScrollService($window) {
         var ctrl=this;
@@ -92,7 +92,7 @@
         var init = true;
         var fixed = false;
         var fixedTopBottom = false;
-        var parentFixed=false; // wenn scrollfix attr nicht false, prüfung ob scrollfix element fixed oder nicht
+        var parentFixed=false;
         var param = {};
 
         ctrl.parentSet=function(el,id,attrScrollFix){

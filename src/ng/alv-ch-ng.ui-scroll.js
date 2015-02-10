@@ -92,7 +92,7 @@
         var init = true;
         var fixed = false;
         var fixedTopBottom = false;
-        var parentFixed=false; // wenn scrollfix attr nicht false, prüfung ob scrollfix element fixed oder nicht
+        var parentFixed=false;
         var param = {};
 
         ctrl.parentSet=function(el,id,attrScrollFix){

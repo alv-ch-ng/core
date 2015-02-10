@@ -1,8 +1,8 @@
-/* alv-ch-ng.core - 0.2.0 - 2015-02-09 - Copyright (c) 2015 Informatik der Arbeitslosenversicherung; */
+/* alv-ch-ng.core - 0.2.0 - 2015-02-10 - Copyright (c) 2015 Informatik der Arbeitslosenversicherung; */
 ;(function () {
     'use strict';
 
-    var module = angular.module('alv-ch-ng.ui-forms', ['alv-ch-ng.ui-core','alv-ch-ng.translate','ui.bootstrap.typeahead','ui.bootstrap.tooltip']);
+    var module = angular.module('alv-ch-ng.ui-forms', ['alv-ch-ng.ui-core','ui.bootstrap.typeahead','ui.bootstrap.tooltip']);
 
     module.directive('formDatepicker', ['$compile','UiRenderService', function ($compile,UiRenderService) {
         return {
