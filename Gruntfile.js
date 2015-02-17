@@ -60,7 +60,7 @@
                     dest: 'dist/alv-ch-ng.ui-navigation.js'
                 },
                 forms: {
-                    src: ['src/ng/alv-ch-ng.ui-forms.js', 'src/ng/alv-ch-ng.ui-forms.templates.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.de.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr-CH.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.it-CH.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.en-GB.js'],
+                    src: ['src/ng/alv-ch-ng.ui-forms.js', 'src/ng/alv-ch-ng.ui-forms.templates.js','lib/ng-lodash/build/ng-lodash.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.de.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr-CH.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.it-CH.js','lib/bootstrap-datepicker/js/locales/bootstrap-datepicker.en-GB.js'],
                     dest: 'dist/alv-ch-ng.ui-forms.js'
                 },
                 core: {
@@ -304,6 +304,7 @@
                             'lib/angular-ui-bootstrap/src/tooltip/tooltip.js',
                             'lib/angular-ui-bootstrap/src/position/position.js',
                             'lib/angular-ui-bootstrap/src/bindHtml/bindHtml.js',
+                            'lib/ng-lodash/build/ng-lodash.js',
                             'node_modules/grunt-contrib-jasmine/vendor/jasmine-2.0.0/jasmine.js'
                         ],
                         version: '2.0.0',

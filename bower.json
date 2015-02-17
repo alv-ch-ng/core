@@ -33,7 +33,8 @@
     "underscore": "~1.4.4",
     "angular-ui-bootstrap": "0.12.0",
     "mailcheck": "1.1.0",
-    "bootstrap-datepicker": "1.3.1"
+    "bootstrap-datepicker": "1.3.1",
+    "ng-lodash":"latest"
   },
   "devDependencies": {
     "alv-ch-ng.demo": "latest",
