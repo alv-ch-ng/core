@@ -17,7 +17,8 @@
             clean: {
                 all: ['dist', 'build'],
                 dist: ['dist'],
-                build: ['build']
+                build: ['build'],
+                example: ['src/example/lib.min.js']
             },
             ngtemplates:  {
               'alv-ch-ng.core':  {
@@ -54,9 +55,7 @@
                       'lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
                       'lib/angular-translate-storage-local/angular-translate-storage-local.js',
                       'lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-                      'lib/ng-lodash/build/ng-lodash.js',
-                      'lib/alv-ch-ng.core/dist/alv-ch-ng.core.js',
-                      'lib/alv-ch-ng.core/dist/alv-ch-ng.core.templates.js'
+                      'lib/ng-lodash/build/ng-lodash.js'
                     ]
                   }
                 }
@@ -241,7 +240,7 @@
                     options: {
                         jshintrc: '.jshintrc'
                     },
-                    src: ['src/**/*.js']
+                    src: ['src/js/**/*.js']
                 },
                 test: {
                     options: {
@@ -309,7 +308,7 @@
         grunt.registerTask('templates', ['ngtemplates']);
 
         // DEV
-        grunt.registerTask('build', ['templates','less:prod','all-test','copy:example','uglify:example']);
+        grunt.registerTask('build', ['clean:example','templates','less:prod','all-test','copy:example','uglify:example']);
         grunt.registerTask('dev', ['build', 'browserSync:dev', 'watch']);
 
         // Default task.
