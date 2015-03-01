@@ -147,36 +147,28 @@
             restrict: 'A',
             replace: true,
             link: function(scope, element, attrs){
-                var icon = angular.element('<span class="glyphicon"></span>');
-                if (!attrs.glyphIcon){
-                    icon.addClass('glyphicon-warning-sign');
-                }
-                else {
-                    icon.addClass('glyphicon-'+attrs.glyphIcon);
-                }
-                if (attrs.glyphAlign==='right'){
-                    element.append(icon);
-                }
-                else {
-                    element.prepend(icon);
-                }
-            }
-        };
-    });
+                var icon = angular.element('<span></span>');
 
-    module.directive('adminSymbol', function(){
-        return {
-            priority: 10,
-            restrict: 'A',
-            replace: true,
-            link: function(scope, element, attrs){
-                var icon = angular.element('<span class="icon" aria-hidden="true"></span>');
-                if (!attrs.adminSymbol){
-                    icon.addClass('icon--exclam');
+                if (attrs.adminSymbol===undefined){
+                    icon.addClass('glyphicon');
+                    if (!attrs.glyphIcon){
+                        icon.addClass('glyphicon-warning-sign');
+                    }
+                    else {
+                        icon.addClass('glyphicon-'+attrs.glyphIcon);
+                    }
                 }
                 else {
-                    icon.addClass('icon--'+attrs.adminSymbol);
+                    icon.addClass('icon');
+                    icon.attr('aria-hidden','true');
+                    if (!attrs.glyphIcon){
+                        icon.addClass('icon--exclam');
+                    }
+                    else {
+                        icon.addClass('icon--'+attrs.glyphIcon);
+                    }
                 }
+
                 if (attrs.glyphAlign==='right'){
                     element.append(icon);
                 }

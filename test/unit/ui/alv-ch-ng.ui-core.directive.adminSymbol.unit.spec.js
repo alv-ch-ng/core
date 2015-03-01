@@ -9,7 +9,7 @@ describe("adminSymbol directive", function() {
                 inject(function ($compile, $rootScope) {
                     var scope = $rootScope.$new();
                     // get an element representation
-                    var elem = angular.element('<div admin-symbol>testContent</glyph>');
+                    var elem = angular.element('<div glyph-icon admin-symbol>testContent</glyph>');
                     // finally compile the HTML
                     $compile(elem)(scope);
                     expect(elem.html()).toEqual('<span class="icon icon--exclam" aria-hidden="true"></span>testContent');
@@ -22,7 +22,7 @@ describe("adminSymbol directive", function() {
                 inject(function ($compile, $rootScope) {
                     var scope = $rootScope.$new();
                     // get an element representation
-                    var elem = angular.element('<div admin-symbol glyph-align="right">testContent</glyph>');
+                    var elem = angular.element('<div glyph-icon admin-symbol glyph-align="right">testContent</glyph>');
                     // finally compile the HTML
                     $compile(elem)(scope);
                     expect(elem.html()).toEqual('testContent<span class="icon icon--exclam" aria-hidden="true"></span>');
@@ -35,7 +35,7 @@ describe("adminSymbol directive", function() {
                 inject(function ($compile, $rootScope) {
                     var scope = $rootScope.$new();
                     // get an element representation
-                    var elem = angular.element('<div admin-symbol="smartphone-landscape">testContent</glyph>');
+                    var elem = angular.element('<div glyph-icon="smartphone-landscape" admin-symbol>testContent</glyph>');
                     // finally compile the HTML
                     $compile(elem)(scope);
                     expect(elem.html()).toEqual('<span class="icon icon--smartphone-landscape" aria-hidden="true"></span>testContent');
