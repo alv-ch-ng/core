@@ -1,7 +1,7 @@
 ;(function() {
     describe("button directive", function() {
 
-        beforeEach(module('alv-ch-ng.ui-core', function() {}));
+        beforeEach(module('alv-ch-ng.core', function() {}));
 
         it('Adds css class \'btn-primary\' if attribute \'primary\' is true.',
             function() {

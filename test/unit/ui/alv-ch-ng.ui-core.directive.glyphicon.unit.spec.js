@@ -2,7 +2,7 @@
 
 describe("glyph-icon directive", function() {
 
-    beforeEach(module('alv-ch-ng.ui-core', function() {}));
+    beforeEach(module('alv-ch-ng.core', function() {}));
 
         it('prepends a span with css classes \'glyphicon\' and  \'glyphicon-warning-sign\'.',
             function() {

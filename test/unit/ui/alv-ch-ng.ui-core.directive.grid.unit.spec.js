@@ -2,7 +2,7 @@
 
 describe("grid directive", function() {
 
-    beforeEach(module('alv-ch-ng.ui-core', function() {}));
+    beforeEach(module('alv-ch-ng.core', function() {}));
 
 
     it('renders the base grid as a row and a column element.',

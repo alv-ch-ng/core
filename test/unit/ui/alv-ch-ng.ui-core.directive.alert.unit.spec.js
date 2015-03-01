@@ -1,7 +1,7 @@
 ;(function () {
     describe('alert directive', function () {
 
-        beforeEach(module('alv-ch-ng.ui-core', function () {
+        beforeEach(module('alv-ch-ng.core', function () {
         }));
 
         it('replaces a alert tag with a div element and matching css classes.',

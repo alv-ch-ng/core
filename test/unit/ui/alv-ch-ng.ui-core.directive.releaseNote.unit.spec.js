@@ -2,7 +2,7 @@
 
 describe("releaseNote directive", function() {
 
-    beforeEach(module('alv-ch-ng.ui-core', function() {}));
+    beforeEach(module('alv-ch-ng.core', function() {}));
 
         it('adds the necessary classes and events.',
             function() {

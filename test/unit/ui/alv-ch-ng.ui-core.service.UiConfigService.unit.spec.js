@@ -1,7 +1,7 @@
 ;(function () {
     describe("UiConfigService", function () {
 
-        beforeEach(module('alv-ch-ng.ui-core', function () { }));
+        beforeEach(module('alv-ch-ng.core', function () { }));
 
         describe('with default values', function() {
 
@@ -13,6 +13,7 @@
             var SCROLL_UP_DEFAULT = 300;
             var SCROLL_UP_BOTTOM_DEFAULT = 20;
             var SCROLL_UP_I18N_DEFAULT='common_i18n_scrollToTop';
+            var DATEPICKER_CONFIG_CUSTOM={ autoclose: true, todayHighlight: true };
 
             it('has a labelWidth of ' + LABELWIDTH_DEFAULT, function () {
                 inject(function (UiConfigService) {
@@ -79,6 +80,12 @@
                     expect(UiConfigService.getScrollUpI18n()).toEqual(SCROLL_UP_I18N_DEFAULT);
                 });
             });
+
+            it('has "'+DATEPICKER_CONFIG_CUSTOM+'" as getDatepickerConfig attribute ', function () {
+                inject(function (UiConfigService) {
+                    expect(UiConfigService.getDatepickerConfig()).toEqual(DATEPICKER_CONFIG_CUSTOM);
+                });
+            });
         });
 
         describe('with custom config', function() {
@@ -94,6 +101,7 @@
             var SCROLL_UP_CUSTOM = 200;
             var SCROLL_UP_BOTTOM_CUSTOM = 10;
             var SCROLL_UP_I18N_CUSTOM='scrollToTop';
+            var DATEPICKER_CONFIG_CUSTOM='datepickerCustom';
 
             var customConfig = {
                 'labelWidth': LABEL_WIDTH_CUSTOM,
@@ -106,12 +114,13 @@
                 'pageNavigationDefaultColumns': PAGE_NAVIGATION_DEFAULT_COLUMNS,
                 'scrollUp':SCROLL_UP_CUSTOM,
                 'scrollUpBottom':SCROLL_UP_BOTTOM_CUSTOM,
-                'scrollUpI18n':SCROLL_UP_I18N_CUSTOM
+                'scrollUpI18n':SCROLL_UP_I18N_CUSTOM,
+                'datepickerConfig':DATEPICKER_CONFIG_CUSTOM
             };
 
             var err_msg = '';
 
-            beforeEach(module('alv-ch-ng.ui-core', function (UiConfigServiceProvider) {
+            beforeEach(module('alv-ch-ng.core', function (UiConfigServiceProvider) {
                 UiConfigServiceProvider.setConfig(customConfig);
                 try {
                     UiConfigServiceProvider.setConfig(null);
@@ -190,12 +199,18 @@
                     expect(UiConfigService.getScrollUpBottom()).toEqual(SCROLL_UP_BOTTOM_CUSTOM);
                 });
             });
+
+            it('reflects the custom datepickerConfig config', function () {
+                inject(function (UiConfigService) {
+                    expect(UiConfigService.getDatepickerConfig()).toEqual(DATEPICKER_CONFIG_CUSTOM);
+                });
+            });
         });
 
         describe('UiConfig - throws error if theres no config ', function(){
             var config_msg = '';
 
-            beforeEach(module('alv-ch-ng.ui-core', function (UiConfigServiceProvider) {
+            beforeEach(module('alv-ch-ng.core', function (UiConfigServiceProvider) {
                 try {
                     UiConfigServiceProvider.setConfig(null);
                 } catch (error) {

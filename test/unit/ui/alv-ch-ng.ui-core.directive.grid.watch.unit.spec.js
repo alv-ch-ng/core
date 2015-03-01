@@ -4,7 +4,7 @@ describe("grid directive", function() {
     var scope, ctrl, timeout, compile;
 
     beforeEach(function(){
-        module('alv-ch-ng.ui-core');
+        module('alv-ch-ng.core');
 
         inject(function($rootScope, $controller, $compile, $timeout){
             scope=$rootScope.$new();

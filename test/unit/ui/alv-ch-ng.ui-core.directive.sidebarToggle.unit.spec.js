@@ -2,7 +2,7 @@
     describe('sidebarToggle directive', function () {
         var elem, scope;
 
-        beforeEach(module('alv-ch-ng.ui-core'));
+        beforeEach(module('alv-ch-ng.core'));
 
         beforeEach(inject(function ($rootScope, $compile) {
             scope = $rootScope;

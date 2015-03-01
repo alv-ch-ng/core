@@ -12,6 +12,7 @@
         var SCROLL_UP_CUSTOM = 200;
         var SCROLL_UP_BOTTOM_CUSTOM = 10;
         var SCROLL_UP_I18N_CUSTOM='common_i18n_scrollToTop';
+        var DATEPICKER_CONFIG_CUSTOM='testDatepickerConfig';
 
         var customConfig = {
             'labelWidth': LABEL_WIDTH_CUSTOM,
@@ -24,10 +25,11 @@
             'pageNavigationDefaultColumns': PAGE_NAVIGATION_DEFAULT_COLUMNS,
             'scrollUp':SCROLL_UP_CUSTOM,
             'scrollUpBottom':SCROLL_UP_BOTTOM_CUSTOM,
-            'scrollUpI18n':SCROLL_UP_I18N_CUSTOM
+            'scrollUpI18n':SCROLL_UP_I18N_CUSTOM,
+            'datepickerConfig':DATEPICKER_CONFIG_CUSTOM
         };
 
-        beforeEach(module('alv-ch-ng.ui-core', function (UiConfigServiceProvider) {
+        beforeEach(module('alv-ch-ng.core', function (UiConfigServiceProvider) {
             UiConfigServiceProvider.setConfig(customConfig);
         }));
 
@@ -122,6 +124,11 @@
             });
         });
 
+        it('provides a getDatepickerConfig getter', function () {
+            inject(function (UiRenderService) {
+                expect(UiRenderService.getDatepickerConfig()).toEqual(DATEPICKER_CONFIG_CUSTOM);
+            });
+        });
     });
 
 }());

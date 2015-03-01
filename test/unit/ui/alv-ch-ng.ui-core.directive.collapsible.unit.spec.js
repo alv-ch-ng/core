@@ -2,7 +2,7 @@
 
     describe("collapsible directive", function() {
 
-        beforeEach(module('alv-ch-ng.ui-core', function() {
+        beforeEach(module('alv-ch-ng.core', function() {
 
         }));
 

@@ -1,7 +1,7 @@
 ;(function() {
     describe("badge directive", function() {
 
-        beforeEach(module('alv-ch-ng.ui-core', function() {}));
+        beforeEach(module('alv-ch-ng.core', function() {}));
 
         describe('with element marker', function() {
 

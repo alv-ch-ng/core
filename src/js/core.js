@@ -313,7 +313,7 @@
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: '../template/core/sidebar-toggle.html',
+            templateUrl: 'template/core/sidebar-toggle.html',
             link: function(scope, element){
                 element.addClass('ng-hide');
                 element.removeClass('ng-show');
@@ -358,7 +358,7 @@
             priority: 20,
             restrict: 'E',
             replace: true,
-            templateUrl: '../template/core/toc.html',
+            templateUrl: 'template/core/toc.html',
             link: function (scope, element, attrs) {
                 // Set the selector that will be used, default to .toc-item
                 var selector = attrs.selector || '.toc-item';
@@ -385,6 +385,39 @@
                     $location.hash(anchor);
 
                     scope.$broadcast('alv-ch-ng:dom-manipulate', {'id': element.attr('id'), 'event':'toc:scrollToc'});
+                };
+            }
+        };
+    }]);
+
+    module.directive('languageSwitcher', ['$translate', 'supportedLanguages', function ($translate,supportedLanguages) {
+        return {
+            restrict: 'E',
+            templateUrl: 'template/core/language-switcher.html',
+            replace: true,
+            link: function (scope, element, attrs) {
+                scope.styleClass = element.attr('class');
+                scope.style = element.attr('style');
+
+                // put supported languages into allLanguages array
+                scope.allLanguages = [];
+
+                if (attrs.languages) {
+                    var tokens = attrs.languages.split(',');
+                    for (var i = 0; i < tokens.length; i++) {
+                        scope.allLanguages[i] = tokens[i].trim();
+                    }
+                } else {
+                    scope.allLanguages = supportedLanguages;
+                }
+
+
+                scope.getTranslationLanguage = function () {
+                    return $translate.use();
+                };
+
+                scope.setTranslationLanguage = function (language) {
+                    $translate.use(language);
                 };
             }
         };
