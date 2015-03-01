@@ -22,13 +22,9 @@ describe('language-switcher directive', function () {
 
     it('uses all supportedLanguages, if no attrs.languages is given.',
         inject(function() {
-
-
-            console.log(elem.html());
-
             var switcher = $(elem).find('#language_en');
             expect(switcher === undefined || switcher === null).toBe(false);
-            expect(scope.allLanguages).toEqual(['en', 'de']);
+            expect(scope.allLanguages).toEqual(['de', 'en']);
         })
     );
 

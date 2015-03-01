@@ -63,7 +63,7 @@
   /**
    * angular translate
    */
-  app.config(function ($translateProvider, supportedLanguages) {
+  app.config(function ($translateProvider,supportedLanguages) {
     $translateProvider.registerAvailableLanguageKeys(supportedLanguages, {
       'en_US': 'en',
       'en_UK': 'en',
