@@ -1,0 +1,11 @@
+<div id="toc">
+    <span i18n-msg="common-i18n.contents"></span>
+    <ul class="toc-list">
+        <li ng-repeat="toc in tocs" spy="{{toc.id}}">
+            <a ng-click="scrollToc(toc.id)">
+                <span ng-hide="toc.i18nMsg">{{toc.title}}</span>
+                <span ng-show="toc.i18nMsg" i18n-msg="{{toc.i18nMsg}}"></span>
+            </a>
+        </li>
+    </ul>
+</div>
