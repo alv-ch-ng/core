@@ -1,7 +1,7 @@
 {
   "name": "alv-ch-ng.core",
   "version": "0.2.0",
-  "description": "ALV-CH AngularJS Components",
+  "description": "ALV-CH AngularJS core Ccomponents",
   "author": "ALV-CH",
   "license": "MIT",
   "engines": {
