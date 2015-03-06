@@ -1,4 +1,4 @@
-/* alv-ch-ng.core - 0.2.0 - 2015-03-01 - Copyright (c) 2015 Informatik der Arbeitslosenversicherung; */
+/* alv-ch-ng.core - 0.2.0 - 2015-03-06 - Copyright (c) 2015 Informatik der Arbeitslosenversicherung; */
 ;(function () {
     'use strict';
 
