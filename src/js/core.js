@@ -415,6 +415,19 @@
         };
     }]);
 
+    module.directive('toggleHelper', [function () {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                var navigation = attrs.toggleHelper || false;
+                if (navigation){
+                    element.attr('data-toggle','collapse');
+                    element.attr('data-target',navigation);
+                }
+            }
+        };
+    }]);
+
     module.directive('activeStartswith', ['$location', function ($location) {
         return {
             restrict: 'A',

@@ -1,5 +1,5 @@
 <ul class="nav navbar-nav" id="language-switch">
     <li id="language_{{language}}" ng-class="{'active':getTranslationLanguage()===language}" ng-repeat="language in allLanguages">
-        <a ng-click="setTranslationLanguage(language)" translate="{{language}}" translate-attr-title="common_i18n_language_short_{{language}}"></a>
+        <a ng-click="setTranslationLanguage(language)" translate="{{language}}" translate-attr-title="common_i18n_language_short_{{language}}" toggle-helper=".nav-collapse"></a>
     </li>
 </ul>

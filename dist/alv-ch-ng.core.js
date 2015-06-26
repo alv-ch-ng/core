@@ -1,4 +1,4 @@
-/* alv-ch-ng.core - 0.2.0 - 2015-03-11 - Copyright (c) 2015 Informatik der Arbeitslosenversicherung; */
+/* alv-ch-ng.core - 0.2.1 - 2015-06-26 - Copyright (c) 2015 Informatik der Arbeitslosenversicherung; */
 ;(function () {
     'use strict';
 
@@ -416,6 +416,19 @@
         };
     }]);
 
+    module.directive('toggleHelper', [function () {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                var navigation = attrs.toggleHelper || false;
+                if (navigation){
+                    element.attr('data-toggle','collapse');
+                    element.attr('data-target',navigation);
+                }
+            }
+        };
+    }]);
+
     module.directive('activeStartswith', ['$location', function ($location) {
         return {
             restrict: 'A',
@@ -666,7 +679,7 @@
   $templateCache.put('template/core/language-switcher.html',
     "<ul class=\"nav navbar-nav\" id=\"language-switch\">\n" +
     "    <li id=\"language_{{language}}\" ng-class=\"{'active':getTranslationLanguage()===language}\" ng-repeat=\"language in allLanguages\">\n" +
-    "        <a ng-click=\"setTranslationLanguage(language)\" translate=\"{{language}}\" translate-attr-title=\"common_i18n_language_short_{{language}}\"></a>\n" +
+    "        <a ng-click=\"setTranslationLanguage(language)\" translate=\"{{language}}\" translate-attr-title=\"common_i18n_language_short_{{language}}\" toggle-helper=\".nav-collapse\"></a>\n" +
     "    </li>\n" +
     "</ul>"
   );
@@ -687,7 +700,7 @@
     "    <span translate=\"common_i18n_contents\"></span>\n" +
     "    <ul class=\"toc-list\">\n" +
     "        <li ng-repeat=\"toc in tocs\" spy=\"{{toc.id}}\">\n" +
-    "            <a ng-click=\"scrollToc(toc.id)\">\n" +
+    "            <a ng-click=\"scrollToc(toc.id)\" toggle-helper=\".sidebar\">\n" +
     "                <span ng-hide=\"toc.i18nMsg\">{{toc.title}}</span>\n" +
     "                <span ng-show=\"toc.i18nMsg\" i18n-msg=\"{{toc.i18nMsg}}\"></span>\n" +
     "            </a>\n" +

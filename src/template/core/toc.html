@@ -2,7 +2,7 @@
     <span translate="common_i18n_contents"></span>
     <ul class="toc-list">
         <li ng-repeat="toc in tocs" spy="{{toc.id}}">
-            <a ng-click="scrollToc(toc.id)">
+            <a ng-click="scrollToc(toc.id)" toggle-helper=".sidebar">
                 <span ng-hide="toc.i18nMsg">{{toc.title}}</span>
                 <span ng-show="toc.i18nMsg" i18n-msg="{{toc.i18nMsg}}"></span>
             </a>
