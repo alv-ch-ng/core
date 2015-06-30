@@ -55,7 +55,8 @@
                       'lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
                       'lib/angular-translate-storage-local/angular-translate-storage-local.js',
                       'lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-                      'lib/ng-lodash/build/ng-lodash.js'
+                      'lib/ng-lodash/build/ng-lodash.js',
+                      'lib/detect-mobile-browser/detectmobilebrowser.js'
                     ]
                   }
                 }
@@ -149,7 +150,7 @@
                 banner: '<%= alvchng.banner %>'
               },
               prod: {
-                src: ['src/js/core.js', 'src/js/core.templates.js'],
+                src: ['src/js/core.js', 'src/js/core.templates.js', 'src/js/core.common.js'],
                 dest: 'dist/alv-ch-ng.core.js'
               }
             },
@@ -178,6 +179,7 @@
                             'lib/angular-translate-storage-local/angular-translate-storage-local.js',
                             'lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
                             'lib/ng-lodash/build/ng-lodash.js',
+                            'lib/detect-mobile-browser/detectmobilebrowser.js',
                             'node_modules/grunt-contrib-jasmine/vendor/jasmine-2.0.0/jasmine.js'
                         ],
                         version: '2.0.0',

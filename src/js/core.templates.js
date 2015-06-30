@@ -4,7 +4,7 @@ angular.module('alv-ch-ng.core').run(['$templateCache', function($templateCache)
   $templateCache.put('template/core/language-switcher.html',
     "<ul class=\"nav navbar-nav\" id=\"language-switch\">\n" +
     "    <li id=\"language_{{language}}\" ng-class=\"{'active':getTranslationLanguage()===language}\" ng-repeat=\"language in allLanguages\">\n" +
-    "        <a ng-click=\"setTranslationLanguage(language)\" translate=\"{{language}}\" translate-attr-title=\"common_i18n_language_short_{{language}}\" toggle-helper=\"#language-switch\"></a>\n" +
+    "        <a ng-click=\"setTranslationLanguage(language)\" translate=\"{{language}}\" translate-attr-title=\"common_i18n_language_short_{{language}}\"></a>\n" +
     "    </li>\n" +
     "</ul>"
   );

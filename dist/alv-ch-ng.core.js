@@ -1,4 +1,4 @@
-/* alv-ch-ng.core - 0.2.1 - 2015-06-26 - Copyright (c) 2015 Informatik der Arbeitslosenversicherung; */
+/* alv-ch-ng.core - 0.2.2 - 2015-06-30 - Copyright (c) 2015 Informatik der Arbeitslosenversicherung; */
 ;(function () {
     'use strict';
 
@@ -416,19 +416,6 @@
         };
     }]);
 
-    module.directive('toggleHelper', [function () {
-        return {
-            restrict: 'A',
-            link: function (scope, element, attrs) {
-                var navigation = attrs.toggleHelper || false;
-                if (navigation){
-                    element.attr('data-toggle','collapse');
-                    element.attr('data-target',navigation);
-                }
-            }
-        };
-    }]);
-
     module.directive('activeStartswith', ['$location', function ($location) {
         return {
             restrict: 'A',
@@ -679,7 +666,7 @@
   $templateCache.put('template/core/language-switcher.html',
     "<ul class=\"nav navbar-nav\" id=\"language-switch\">\n" +
     "    <li id=\"language_{{language}}\" ng-class=\"{'active':getTranslationLanguage()===language}\" ng-repeat=\"language in allLanguages\">\n" +
-    "        <a ng-click=\"setTranslationLanguage(language)\" translate=\"{{language}}\" translate-attr-title=\"common_i18n_language_short_{{language}}\" toggle-helper=\"#language-switch\"></a>\n" +
+    "        <a ng-click=\"setTranslationLanguage(language)\" translate=\"{{language}}\" translate-attr-title=\"common_i18n_language_short_{{language}}\"></a>\n" +
     "    </li>\n" +
     "</ul>"
   );
@@ -710,3 +697,16 @@
   );
 
 }]);
+;if ($.browser.mobile) {
+    $(document).on('click', '.navbar-collapse.in', function (e) {
+        if ($(e.target).is('a')) {
+            $(this).collapse('hide');
+        }
+    });
+
+    $(document).on('click', '.sidebar.collapse.in', function (e) {
+        if ($(e.target).is('a')) {
+            $(this).collapse('hide');
+        }
+    });
+}
