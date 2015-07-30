@@ -61,19 +61,6 @@
                   }
                 }
             },
-            less: {
-                prod: {
-                    options: {
-                        paths: ['src/less'],
-                        compress: false,
-                        cleancss: true,
-                        ieCompat: true
-                    },
-                    files: {
-                        'dist/css/core.css': ['src/less/core.less']
-                    }
-                }
-            },
             copy: {
               prod: {
                 files: [
@@ -113,36 +100,6 @@
                   }
                 ]
               }
-            },
-            cssbeautifier: {
-                options: {
-                    banner: '<%= alvchng.banner %>'
-                },
-                prod: {
-                    files: {
-                        'dist/css/core.css': ['dist/css/core.css']
-                    }
-                }
-            },
-            cssmin: {
-                options: {
-                    banner: '<%= alvchng.banner %>'
-                },
-                prod: {
-                    files: {
-                        'dist/css/core.min.css': ['dist/css/core.css']
-                    }
-                }
-            },
-            compress: {
-                main: {
-                    options: {
-                        mode: 'gzip'
-                    },
-                    files: [
-                        { src: ['dist/css/core.min.css'], dest: 'dist/css/core.min.css' }
-                    ]
-                }
             },
             concat: {
               options: {
@@ -261,15 +218,6 @@
                     src: ['test/**/*.js', '!test/dev/*.js', '!test/**/helpers/*.helper.js', '!test/e2e/**']
                 }
             },
-            lesslint: {
-                options: {
-                    csslint: {
-                        csslintrc: '.csslintrc'
-                    },
-                    imports: ['src/less/**/*.less']
-                },
-                src: ['src/less/core.less']
-            },
             watch: {
               html: {
                 files: 'src/template/**/*.html',
@@ -278,10 +226,6 @@
               templates: {
                 files: 'src/template/**/*.html',
                   tasks: ['templates']
-              },
-              less: {
-                files: 'src/less/**/*.less',
-                  tasks: ['less:prod']
               },
               jshint: {
                 files: 'src/js/*.js',
@@ -311,8 +255,7 @@
         // Tests
         grunt.registerTask('unit-test', ['jasmine']);
         grunt.registerTask('jshint-test', ['jshint']);
-        grunt.registerTask('lesslint-test', ['lesslint']);
-        grunt.registerTask('all-test', ['lesslint-test', 'htmlhint:templates', 'jshint-test', 'unit-test']);
+        grunt.registerTask('all-test', ['htmlhint:templates', 'jshint-test', 'unit-test']);
         // CI
         grunt.registerTask('travis', ['jshint', 'clean:build', 'unit-test', 'coveralls']);
 
@@ -320,11 +263,11 @@
         grunt.registerTask('templates', ['ngtemplates']);
 
         // DEV
-        grunt.registerTask('build', ['clean:example','templates','less:prod','all-test','copy:example','uglify:example']);
+        grunt.registerTask('build', ['clean:example','templates','all-test','copy:example','uglify:example']);
         grunt.registerTask('dev', ['build', 'browserSync:dev', 'watch']);
 
         // Default task.
-        grunt.registerTask('default', ['clean:all','templates','all-test','less:prod','cssbeautifier','cssmin','concat:prod','uglify:prod','copy:prod']);
+        grunt.registerTask('default', ['clean:all','templates','all-test','concat:prod','uglify:prod','copy:prod']);
     };
 
 

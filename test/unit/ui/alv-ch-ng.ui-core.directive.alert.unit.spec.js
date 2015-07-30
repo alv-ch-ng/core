@@ -46,17 +46,76 @@
                 var elem = angular.element('<alert alert-dismissable="true" alert-dismissable-text="testButton">test alert</alert>');
                 $compile(elem)(scope);
 
-                elem.find('button').each(function(index, item) {
-                    expect(index).toBe(0);
-                    expect($(item).hasClass('close')).toBeTruthy();
-                    expect($(item).hasClass('text-close')).toBeTruthy();
-                    expect($(item).html()).toEqual('testButton');
-                });
                 expect(elem.hasClass('alert-dismissable')).toBeTruthy();
+                expect(elem.find('button.close')).toContainText('testButton');
+                expect(elem.find('button.text-close')).toContainText('testButton');
             })
         );
 
+        it('adds a dismissable function',
+            inject(function ($compile, $rootScope) {
+                var scope = $rootScope.$new();
+                // get an element representation
+                var elem = angular.element('<alert alert-dismissable="testDismiss()">test alert</alert>');
+                $compile(elem)(scope);
 
+                expect(elem.hasClass('alert-dismissable')).toBeTruthy();
+                elem.find('button').each(function(index, item) {
+                    expect(index).toBe(0);
+                    expect($(item).hasClass('close')).toBeTruthy();
+                    expect($(item).attr('ng-click')).toBe('testDismiss()');
+                });
+            })
+        );
+
+        it('overlay alert',
+            inject(function ($compile, $rootScope) {
+                var scope = $rootScope.$new();
+                // get an element representation
+                var elem = angular.element('<alert alert-overlay="true">test alert</alert>');
+                $compile(elem)(scope);
+
+                expect(elem).toContainText('test alert');
+                expect(elem.hasClass('alert-info')).toBeTruthy();
+                expect(elem.hasClass('alert-info')).toBeTruthy();
+                expect(elem.attr('style')).toBeTruthy();
+            })
+        );
+
+        it('alert-dismissable-on-timeout',
+            inject(function ($compile, $rootScope, $timeout) {
+                var scope = $rootScope.$new();
+                // get an element representation
+                scope.testTrigger=false;
+                var elem = angular.element('<alert alert-dismissable-on-timeout="1000" alert-dismissable-trigger="testTrigger">test alert</alert>');
+                $compile(elem)(scope);
+                scope.$digest();
+
+                expect(elem).toContainText('test alert');
+
+                scope.testTrigger=true;
+                scope.$digest();
+                $timeout.flush();
+
+                expect(scope.testTrigger).toBeFalsy();
+
+
+            })
+        );
+
+        it('alert-dismissable-on-timeout without params',
+            inject(function ($compile, $rootScope) {
+                var scope = $rootScope.$new();
+                // get an element representation
+                var elem = angular.element('<alert alert-dismissable-on-timeout alert-dismissable-trigger>test alert</alert>');
+                $compile(elem)(scope);
+                scope.$digest();
+
+                expect(elem).toContainText('test alert');
+
+
+            })
+        );
     });
 
 

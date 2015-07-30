@@ -3,7 +3,7 @@
 
     var module = angular.module('alv-ch-ng.core', ['alv-ch-ng.core']);
 
-    module.directive('alert', function(){
+    module.directive('alert', ['$compile', function($compile){
         return {
             priority: 10,
             restrict: 'E',
@@ -11,25 +11,60 @@
             transclude: true,
             replace: true,
             link: function(scope, element, attrs){
-                var severity = "info";
+                var severity = 'info';
                 if (attrs.alertSeverity!==undefined){
                     severity = attrs.alertSeverity;
                 }
                 // add severity
-                element.addClass("alert-"+severity);
+                element.addClass('alert-'+severity);
                 // add dismissbale
 
-                if (attrs.alertDismissable==='true'){
-                    element.addClass("alert-dismissable");
-                    if (!attrs.alertDismissableText){
-                        element.prepend(angular.element('<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'));
-                    } else {
-                        element.prepend(angular.element('<button type="button" class="close text-close" data-dismiss="alert" aria-hidden="true">'+attrs.alertDismissableText+'</button>'));
+                if (attrs.alertDismissable){
+                    element.addClass('alert-dismissable');
+                    var dismissableText = attrs.alertDismissableText || '&times;';
+                    var button = angular.element('<button type="button" class="close" aria-hidden="true">'+dismissableText+'</button>');
+                    if (attrs.alertDismissableText){
+                        button.addClass('text-close');
                     }
+                    if (attrs.alertDismissable==='true'){
+                        button.attr('data-dismiss','alert');
+                    }
+                    else {
+                        button.attr('ng-click',attrs.alertDismissable);
+                    }
+                    $compile(button)(scope);
+                    element.prepend(button);
+                }
+
+                if (attrs.alertOverlay==='true'){
+                    element.css('width',element.outerWidth(true));
+                    element.addClass('alert-overlay');
                 }
             }
         };
-    });
+    }]);
+
+    module.directive('alertDismissableOnTimeout', ['$timeout', function($timeout){
+        return {
+            priority: 20,
+            restrict: 'A',
+            link: function(scope, element, attrs){
+                var dismissTimeout = attrs.alertDismissableOnTimeout || 5000;
+                var alertTrigger = attrs.alertDismissableTrigger || false;
+
+                scope.$watch(alertTrigger, function () {
+                    if (scope[alertTrigger]) {
+                        scope.timer = $timeout(function () {
+                            scope[alertTrigger] = false;
+                        }, dismissTimeout);
+                    }
+                    else {
+                        $timeout.cancel(scope.timer);
+                    }
+                });
+            }
+        };
+    }]);
 
     module.directive('button', function(){
         return {

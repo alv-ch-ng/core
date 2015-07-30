@@ -40,5 +40,14 @@ describe('language-switcher directive', function () {
             expect(scope.allLanguages).toEqual(['it', 'ru']);
         })
     );
+
+    it('scope.setTranslationLanguage',
+        inject(function() {
+            expect(scope.getTranslationLanguage()).toBe('en');
+            scope.setTranslationLanguage('de');
+            scope.$digest();
+            expect(scope.getTranslationLanguage()).toBe('de');
+        })
+    );
 });
 }());
