@@ -40,6 +40,7 @@
     <script src="lib.min.js"></script>
 
     <script src="../js/core.js"></script>
+    <script src="../js/core.service.js"></script>
     <script src="../js/core.templates.js"></script>
     <script src="../js/core.common.js"></script>
 
@@ -92,9 +93,12 @@
         </div>
       </div>
     </div>
-    <alert alert-severity="info">
-      <strong>alv.ch.ng</strong> Welcome to the core module.
-    </alert>
+    <div class="system-messages">
+        <alert alert-severity="info" alert-dismissable="true">
+            <span><strong>alv-ch-ng</strong> welcomes you.</span>
+        </alert>
+    </div>
+    <alerts></alerts>
     <!--/.system messages -->
 
     <div class="container">

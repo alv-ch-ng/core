@@ -1,4 +1,4 @@
-/* alv-ch-ng.core - 0.2.3 - 2015-07-30 - Copyright (c) 2015 Informatik der Arbeitslosenversicherung; */
+/* alv-ch-ng.core - 0.2.4 - 2015-07-31 - Copyright (c) 2015 Informatik der Arbeitslosenversicherung; */
 ;(function () {
     'use strict';
 
@@ -20,7 +20,7 @@
                 element.addClass('alert-'+severity);
                 // add dismissbale
 
-                if (attrs.alertDismissable){
+                if (attrs.alertDismissable!=='false'){
                     element.addClass('alert-dismissable');
                     var dismissableText = attrs.alertDismissableText || '&times;';
                     var button = angular.element('<button type="button" class="close" aria-hidden="true">'+dismissableText+'</button>');
@@ -53,16 +53,34 @@
                 var dismissTimeout = attrs.alertDismissableOnTimeout || 5000;
                 var alertTrigger = attrs.alertDismissableTrigger || false;
 
-                scope.$watch(alertTrigger, function () {
-                    if (scope[alertTrigger]) {
-                        scope.timer = $timeout(function () {
-                            scope[alertTrigger] = false;
-                        }, dismissTimeout);
-                    }
-                    else {
-                        $timeout.cancel(scope.timer);
-                    }
-                });
+                if (dismissTimeout) {
+                    scope.$watch(alertTrigger, function () {
+                        if (scope[alertTrigger]) {
+                            scope.timer = $timeout(function () {
+                                scope[alertTrigger] = false;
+                            }, dismissTimeout);
+                        }
+                        else {
+                            $timeout.cancel(scope.timer);
+                        }
+                    });
+                }
+            }
+        };
+    }]);
+
+    module.directive('alerts', ['AlertsService',function(AlertsService){
+        return {
+            priority: 10,
+            restrict: 'E',
+            scope: true,
+            templateUrl: 'template/core/alerts.html',
+            link: function(scope, element, attrs){
+                var type = attrs.alertsContext || undefined;
+                if (type===undefined){
+                    element.addClass('system-messages');
+                }
+                scope.alerts = AlertsService.get(type);
             }
         };
     }]);
@@ -695,8 +713,55 @@
     }]);
 
 }());
+;;(function () {
+
+  'use strict';
+
+  angular.module('alv-ch-ng.core')
+    .factory('AlertsService', function () {
+
+      var alerts = {};
+      alerts.globals=[];
+
+      function add(alert){
+        if (alert.context){
+          alerts[alert.context].push(alert.message);
+        }
+        else {
+          alerts.globals.push(alert.message);
+        }
+      }
+
+      function get(context){
+        if (context){
+        if (!angular.isObject(alerts[context])){
+            alerts[context]=[];
+        }
+          return alerts[context];
+        }
+        return alerts.globals;
+      }
+
+      return {
+        add: add,
+        get: get
+      };
+
+    });
+
+}());
+
+
+
 ;angular.module('alv-ch-ng.core').run(['$templateCache', function($templateCache) {
   'use strict';
+
+  $templateCache.put('template/core/alerts.html',
+    "<div ng-repeat=\"alert in alerts\">\n" +
+    "    <alert alert-severity=\"{{alert.severity}}\" alert-overlay=\"{{alert.overlay}}\" alert-dismissable=\"{{alert.dismissable}}\" alert-dismissable-text=\"{{alert.dismissableText}}\" alert-dismissable-on-timeout=\"{{alert.ismissableOnTimeout || false}}\" alert-dismissable-trigger=\"{{alert.dismissableTrigger || false}}\" ng-show=\"{{alert.dismissableTrigger || true}}\"><span translate=\"{{alert.translate}}\"></span></alert>\n" +
+    "</div>"
+  );
+
 
   $templateCache.put('template/core/language-switcher.html',
     "<ul class=\"nav navbar-nav\" id=\"language-switch\">\n" +

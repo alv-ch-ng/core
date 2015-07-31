@@ -1,0 +1,3 @@
+<div ng-repeat="alert in alerts">
+    <alert alert-severity="{{alert.severity}}" alert-overlay="{{alert.overlay}}" alert-dismissable="{{alert.dismissable}}" alert-dismissable-text="{{alert.dismissableText}}" alert-dismissable-on-timeout="{{alert.ismissableOnTimeout || false}}" alert-dismissable-trigger="{{alert.dismissableTrigger || false}}" ng-show="{{alert.dismissableTrigger || true}}"><span translate="{{alert.translate}}"></span></alert>
+</div>

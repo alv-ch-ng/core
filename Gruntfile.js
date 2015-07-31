@@ -107,7 +107,7 @@
                 banner: '<%= alvchng.banner %>'
               },
               prod: {
-                src: ['src/js/core.js', 'src/js/core.templates.js', 'src/js/core.common.js'],
+                src: ['src/js/core.js', 'src/js/core.service.js', 'src/js/core.templates.js', 'src/js/core.common.js'],
                 dest: 'dist/alv-ch-ng.core.js'
               }
             },

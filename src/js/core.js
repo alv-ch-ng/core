@@ -19,7 +19,7 @@
                 element.addClass('alert-'+severity);
                 // add dismissbale
 
-                if (attrs.alertDismissable){
+                if (attrs.alertDismissable!=='false'){
                     element.addClass('alert-dismissable');
                     var dismissableText = attrs.alertDismissableText || '&times;';
                     var button = angular.element('<button type="button" class="close" aria-hidden="true">'+dismissableText+'</button>');
@@ -52,16 +52,34 @@
                 var dismissTimeout = attrs.alertDismissableOnTimeout || 5000;
                 var alertTrigger = attrs.alertDismissableTrigger || false;
 
-                scope.$watch(alertTrigger, function () {
-                    if (scope[alertTrigger]) {
-                        scope.timer = $timeout(function () {
-                            scope[alertTrigger] = false;
-                        }, dismissTimeout);
-                    }
-                    else {
-                        $timeout.cancel(scope.timer);
-                    }
-                });
+                if (dismissTimeout) {
+                    scope.$watch(alertTrigger, function () {
+                        if (scope[alertTrigger]) {
+                            scope.timer = $timeout(function () {
+                                scope[alertTrigger] = false;
+                            }, dismissTimeout);
+                        }
+                        else {
+                            $timeout.cancel(scope.timer);
+                        }
+                    });
+                }
+            }
+        };
+    }]);
+
+    module.directive('alerts', ['AlertsService',function(AlertsService){
+        return {
+            priority: 10,
+            restrict: 'E',
+            scope: true,
+            templateUrl: 'template/core/alerts.html',
+            link: function(scope, element, attrs){
+                var type = attrs.alertsContext || undefined;
+                if (type===undefined){
+                    element.addClass('system-messages');
+                }
+                scope.alerts = AlertsService.get(type);
             }
         };
     }]);

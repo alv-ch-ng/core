@@ -10,8 +10,8 @@
                 // get an element representation
                 var elem = angular.element('<alert>test alert</alert>');
                 $compile(elem)(scope);
-                expect(elem.html()).toBe('<span class="ng-scope">test alert</span>');
                 expect(elem.hasClass('alert-info')).toBeTruthy();
+                expect(elem).toContainText('test alert');
             })
         );
 
@@ -36,6 +36,16 @@
                     expect($(item).hasClass('close')).toBeTruthy();
                 });
                 expect(elem.hasClass('alert-dismissable')).toBeTruthy();
+            })
+        );
+
+        it('dont adds the "alert-dismissable" class f the alert-dismissable attribute is set to false.',
+            inject(function ($compile, $rootScope) {
+                var scope = $rootScope.$new();
+                // get an element representation
+                var elem = angular.element('<alert alert-dismissable="false">test alert</alert>');
+                $compile(elem)(scope);
+                expect(elem.hasClass('alert-dismissable')).toBeFalsy();
             })
         );
 
@@ -112,8 +122,6 @@
                 scope.$digest();
 
                 expect(elem).toContainText('test alert');
-
-
             })
         );
     });

@@ -1,6 +1,13 @@
 angular.module('alv-ch-ng.core').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('template/core/alerts.html',
+    "<div ng-repeat=\"alert in alerts\">\n" +
+    "    <alert alert-severity=\"{{alert.severity}}\" alert-overlay=\"{{alert.overlay}}\" alert-dismissable=\"{{alert.dismissable}}\" alert-dismissable-text=\"{{alert.dismissableText}}\" alert-dismissable-on-timeout=\"{{alert.ismissableOnTimeout || false}}\" alert-dismissable-trigger=\"{{alert.dismissableTrigger || false}}\" ng-show=\"{{alert.dismissableTrigger || true}}\"><span translate=\"{{alert.translate}}\"></span></alert>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/core/language-switcher.html',
     "<ul class=\"nav navbar-nav\" id=\"language-switch\">\n" +
     "    <li id=\"language_{{language}}\" ng-class=\"{'active':getTranslationLanguage()===language}\" ng-repeat=\"language in allLanguages\">\n" +
